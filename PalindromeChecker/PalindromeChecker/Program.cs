@@ -12,40 +12,25 @@ namespace PalindromeChecker
     {
         static void Main(string[] args)
         {
-            Process myProcess = null;
-
-            try
+            while (true)
             {
-                myProcess = Process.Start("PalindromeChecker.exe");
+                Console.WriteLine("Check if your string is a palindrome:");
+                string userInputString = Console.ReadLine();
 
-                while (!myProcess.HasExited)
+                userInputString = Regex.Replace(userInputString, @"\s", "");
+                string checkString = ReverseString(userInputString);
+
+                if (userInputString == checkString)
                 {
-                    Console.WriteLine("Check if your string is a palindrome:");
-                    string userInputString = Console.ReadLine();
-
-                    userInputString = Regex.Replace(userInputString, @"\s", "");
-                    string checkString = ReverseString(userInputString);
-
-                    if (userInputString == checkString)
-                    {
-                        Console.WriteLine("The string is a palindrome");
-                    }
-                    else
-                    {
-                        Console.WriteLine("The string is not a palindrome");
-                    }
-                    Console.ReadLine();
+                    Console.WriteLine("The string is a palindrome");
+                }
+                else
+                {
+                    Console.WriteLine("The string is not a palindrome");
                 }
             }
+        }
 
-            finally
-            {
-                if (myProcess != null)
-                {
-                    myProcess.Close();
-                }
-            }
-         }
 
         // Helper method - String Reverser
         public static string ReverseString(string s)
